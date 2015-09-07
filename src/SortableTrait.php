@@ -30,7 +30,6 @@ trait SortableTrait {
         );
     }
 
-
     /**
      * Insert model before current
      *
@@ -114,7 +113,6 @@ trait SortableTrait {
 
         return $this;
     }
-
 
     /**
      * Decorate into transaction .
