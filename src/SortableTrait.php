@@ -43,7 +43,7 @@ trait SortableTrait {
 
         $field = $this->getPositionColumn();
 
-        if ($model->{$field} > $this->{$field}) {
+        if ($this->{$field}  > $model->{$field}) {
 
             $this->_transaction(function () use ($model, $field) {
 
@@ -51,12 +51,12 @@ trait SortableTrait {
                     ->where($field, '<', $this->{$field})
                     ->increment($field);
 
-                $this->{$field} = $model->{$field};
+                $this->{$field}  = $model->{$field};
                 $model->{$field} = $model->{$field} + 1;
-
+                $this->save();
             });
 
-        } else {
+        } elseif ($this->{$field} < $model->{$field})  {
             $this->_transaction(function () use ($model, $field) {
 
                 $this->where($field, '<', $model->{$field})
@@ -64,10 +64,11 @@ trait SortableTrait {
                     ->decrement($field);
 
                 $this->{$field} = $model->{$field} - 1;
+                $this->save();
             });
         }
 
-        $this->save();
+
 
         return $this;
     }
@@ -93,9 +94,10 @@ trait SortableTrait {
                     ->increment($field);
 
                 $this->{$field} = $model->{$field} + 1;
+                $this->save();
             });
 
-        } else {
+        } elseif ($this->{$field} < $model->{$field}) {
             $this->_transaction(function () use ($model, $field) {
 
                 $this->where($field, '<=', $model->{$field})
@@ -104,6 +106,7 @@ trait SortableTrait {
 
                 $this->{$field} = $model->{$field};
                 $model->{$field} = $model->{$field} - 1;
+                $this->save();
             });
         }
 
