@@ -1,0 +1,24 @@
+{
+    "name": "parfumix/eloquent-sortable",
+    "description": "Eloquent sortable",
+    "keywords": ["eloquent", "ranking", "sorting", "laravel", "php"],
+    "homepage": "https://github.com/parfumix/eloquent-sortable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Radu Bordei",
+            "email": "radu.bordei89@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "laravel/framework": "~5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eloquent\\Sortable\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
