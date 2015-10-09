@@ -67,8 +67,6 @@ trait SortableTrait {
             });
         }
 
-
-
         return $this;
     }
 
@@ -88,7 +86,7 @@ trait SortableTrait {
 
             $this->_transaction(function () use ($model, $field) {
 
-                $this->where($field, '>=', $model->{$field})
+                $this->where($field, '>', $model->{$field})
                     ->where($field, '<', $this->{$field})
                     ->increment($field);
 
